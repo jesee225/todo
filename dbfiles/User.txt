@@ -1,8 +1,14 @@
 [
   {
-    "role": 10,
     "username": "gua",
-    "password": "123",
-    "id": 1
+    "id": 1,
+    "password": "40bd001563085fc35165329ea1ff5c5ecbdbbeef",
+    "role": 10
+  },
+  {
+    "username": "qqq",
+    "id": 2,
+    "password": "a056c8d05ae9ac6ca180bc991b93b7ffe37563e0",
+    "role": 10
   }
 ]

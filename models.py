@@ -113,18 +113,27 @@ class User(Model):
         self.password = form.get('password', '')
         self.role = int(form.get('role', 10))
 
-    def is_admin(self):
-        return self.role == 1
+    def sha1_password(self, pwd):
+        import hashlib
+        s = hashlib.sha1(pwd.encode('ascii'))
+        return s.hexdigest()
 
     def validate_login(self):
         u = User.find_by(username=self.username)
         if u is not None:
-            return u.password == self.password
+            pwd = self.sha1_password(self.password)
+            return u.password == pwd
         else:
             return False
 
+    def is_admin(self):
+        return self.role == 1
+
     def validate_register(self):
-        return len(self.username) > 2 and len(self.password) > 2
+        valid = len(self.username) > 2 and len(self.password) > 2
+        if valid:
+            self.password = self.sha1_password(self.password)
+        return valid
 
 
 class Todo(Model):
