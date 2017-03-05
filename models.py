@@ -54,10 +54,6 @@ class Model(object):
         return None
 
     @classmethod
-    def find(cls, id):
-        return cls.find_by(id=id)
-
-    @classmethod
     def delete(cls, id):
         models = cls.all()
         index = -1
